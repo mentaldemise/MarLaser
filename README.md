@@ -7,6 +7,9 @@ https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#hr
    * If you're brave enough to try this, then use this [link](https://github.com/ExplodingLemur/presentations/wiki/K40-RAMPS-Conversion) to follow his instructions on modifying the board
 2. An ability to either solder or spare cash to purchase parts.
 
+# Results for just ramps, no stepper upgrade:
+[![Video](http://img.youtube.com/vi/vAA65vcwuIo/0.jpg)](http://www.youtube.com/watch?v=vAA65vcwuIo)
+
 
 ## Materials:
 
