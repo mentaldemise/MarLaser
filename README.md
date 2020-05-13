@@ -8,7 +8,9 @@ https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#hr
 2. An ability to either solder or spare cash to purchase parts.
 
 # Results for just ramps, no stepper upgrade:
-[![Video](http://img.youtube.com/vi/vAA65vcwuIo/0.jpg)](http://www.youtube.com/watch?v=vAA65vcwuIo)
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=vAA65vcwuIo" target="_blank">
+<img src="http://img.youtube.com/vi/vAA65vcwuIo/0.jpg" alt="IMAGE ALT TEXT HERE"  border="10" />
+</a>
 
 
 ## Materials:
