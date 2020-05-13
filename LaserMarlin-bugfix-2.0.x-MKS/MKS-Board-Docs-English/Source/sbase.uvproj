@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<Project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="project_proj.xsd">
+
+  <SchemaVersion>1.1</SchemaVersion>
+
+  <Header>### uVision Project, (C) Keil Software</Header>
+
+  <Targets>
+    <Target>
+      <TargetName>Target 1</TargetName>
+      <ToolsetNumber>0xffff</ToolsetNumber>
+      <ToolsetName>&lt;unspecified&gt;</ToolsetName>
+      <Groups>
+        <Group>
+          <GroupName>Source Group 1</GroupName>
+          <Files>
+            <File>
+              <FileName>generate-version.sh</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\src\generate-version.sh</FilePath>
+            </File>
+            <File>
+              <FileName>main.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\main.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>version.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\version.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>version.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\version.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+      </Groups>
+    </Target>
+  </Targets>
+
+</Project>
