@@ -78,7 +78,12 @@ Bottom Connector(top to bottom)
 ---
 
 
+### Step Calibration
+An important part of getting Marlin right on your machine is making sure that distances are correct. If you move 20MM in X when you thought you were going 19MM then there's a bit problem.
 
+This LightBurn file can be used to calibrate steps. There's a 20mmX20mm square with 5mm intervals and axis labels. Cut the outside and etch the inside, measure, and adjust until you get 20x20 with a caliper. Then cut the two triangles(one is rotated 90 degrees), if the two triangles stack up the same then your steps are at least correctly proportioned. 
+
+Use this link to download the Calibration file [Calibration File](media/calibration/20mmSquareStepCal.lbrn)  
 
 
 ### 12V buck for Relays
