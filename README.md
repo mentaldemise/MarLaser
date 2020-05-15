@@ -127,9 +127,9 @@ Water pump is controlled via one of the panel buttons and a relay using one of t
 ## MKS Upgrade for Raster
 ---
 <a href="https://www.youtube.com/watch?feature=player_embedded&v=EFzJmyRZ6YY" target="_blank">
-<img src="https://img.youtube.com/vi/EFzJmyRZ6YY.jpg" alt="IMAGE ALT TEXT HERE"  border="10" />
+<img src="https://img.youtube.com/vi/EFzJmyRZ6YY/0.jpg" alt="IMAGE ALT TEXT HERE"  border="10" />
 </a>
 ---
 <a href="https://www.youtube.com/watch?feature=player_embedded&v=5UWSP2m-0Rs" target="_blank">
-<img src="https://img.youtube.com/vi/5UWSP2m-0Rs.jpg" alt="IMAGE ALT TEXT HERE"  border="10" />
+<img src="https://img.youtube.com/vi/5UWSP2m-0Rs/0.jpg" alt="IMAGE ALT TEXT HERE"  border="10" />
 </a>
