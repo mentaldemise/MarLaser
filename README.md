@@ -7,6 +7,22 @@ https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#hr
    * If you're brave enough to try this, then use this [link](https://github.com/ExplodingLemur/presentations/wiki/K40-RAMPS-Conversion) to follow his instructions on modifying the board
 2. An ability to either solder or spare cash to purchase parts.
 
+# Baseline
+
+This is a Marlin 2.0 build with all the normal laser options set. This is the same firmware configuration that's used in the top "Result" video. The switch from this to that was Lightburn adding support for Inline mode. A Regular Expression can be run on existing Lightburn output as follows:
+
+* Export your gcode for Marlin to desktop. Open it in Notepad++ then:
+  * replace all M03 with “I”
+  * replace ^(I.+)[\n](G1.+)$ with $2 $1
+
+^This is very much at your own peril. It works for me. I don't mind breaking my stuff.
+
+
+<a href="https://www.youtube.com/watch?feature=player_embedded&v=LqSpBpukYX4" target="_blank">
+<img src="https://img.youtube.com/vi/LqSpBpukYX4/0.jpg" alt="IMAGE ALT TEXT HERE"  border="10" />
+</a>
+
+
 # Results for just ramps, no stepper upgrade:
 <a href="https://www.youtube.com/watch?feature=player_embedded&v=vAA65vcwuIo" target="_blank">
 <img src="https://img.youtube.com/vi/vAA65vcwuIo/0.jpg" alt="IMAGE ALT TEXT HERE"  border="10" />
