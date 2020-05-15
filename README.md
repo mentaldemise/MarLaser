@@ -8,8 +8,8 @@ https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#hr
 2. An ability to either solder or spare cash to purchase parts.
 
 # Results for just ramps, no stepper upgrade:
-<a href="http://www.youtube.com/watch?feature=player_embedded&v=vAA65vcwuIo" target="_blank">
-<img src="http://img.youtube.com/vi/vAA65vcwuIo/0.jpg" alt="IMAGE ALT TEXT HERE"  border="10" />
+<a href="https://www.youtube.com/watch?feature=player_embedded&v=vAA65vcwuIo" target="_blank">
+<img src="https://img.youtube.com/vi/vAA65vcwuIo/0.jpg" alt="IMAGE ALT TEXT HERE"  border="10" />
 </a>
 
 
@@ -78,7 +78,7 @@ Bottom Connector(top to bottom)
 ---
 
 
-### Step Calibration
+## Step Calibration
 An important part of getting Marlin right on your machine is making sure that distances are correct. If you move 20MM in X when you thought you were going 19MM then there's a bit problem.
 
 This LightBurn file can be used to calibrate steps. There's a 20mmX20mm square with 5mm intervals and axis labels. Cut the outside and etch the inside, measure, and adjust until you get 20x20 with a caliper. Then cut the two triangles(one is rotated 90 degrees), if the two triangles stack up the same then your steps are at least correctly proportioned. 
@@ -101,12 +101,35 @@ Runs: Cooling(water pump), Exhaust, and Air Assist via panel buttons
 
 Pretty basic in the grand scheme
 
-![](media/img/20200512_000114.jpg)
+![](media/img/20200507_130815.jpg)
 
-### Water pump/flow indicator?
+## Water pump/flow indicator?
 
-Inline with the water pump's outlet I have a 12V generator that turns JUST enough to power on the green "FLOW" led.
+*** When hooking up the chiller and cutting my speed/power for MDF went from 10/32 to barely get through to 10/28.
 
-![](media/img/20200507_130852.jpg)
+This setup works just fine without the chiller in the loop for the K40 if you turn your pump off between using the laser. I found after a few hours the pump alone would heat the water up(only having 5Gallons doesn't help)
+
+We have an aquarium pump in the bottom of a 5 gallon bucket.  
+Outlet on it goes to the IN side of a chiller.  
+Outlet of the chiller goes to the IN side of a 12V generator.   
+Outlet of the generator then goes to the laser in.
+
+Generator output then goes to the "FLOW" led on the panel. This needs some revision yet.  
+There's a Thermistor stuck to the side of the bucket the pump is in and hooked up to TH0 on the RAMPS board to get water temp on the screen as well.
+
+Water pump is controlled via one of the panel buttons and a relay using one of the original outlets on the back of the case(with wiring corrected)
+
+![](media/img/coolersetup.jpg)
+
+
+**wire cleanup will come when I get my panel mount connectors this coming week.
 
 ## MKS Upgrade for Raster
+---
+<a href="https://www.youtube.com/watch?feature=player_embedded&v=EFzJmyRZ6YY" target="_blank">
+<img src="https://img.youtube.com/vi/EFzJmyRZ6YY.jpg" alt="IMAGE ALT TEXT HERE"  border="10" />
+</a>
+---
+<a href="https://www.youtube.com/watch?feature=player_embedded&v=5UWSP2m-0Rs" target="_blank">
+<img src="https://img.youtube.com/vi/5UWSP2m-0Rs.jpg" alt="IMAGE ALT TEXT HERE"  border="10" />
+</a>
