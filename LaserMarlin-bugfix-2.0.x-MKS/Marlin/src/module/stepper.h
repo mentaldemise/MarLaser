@@ -240,7 +240,7 @@ class Stepper {
 
   public:
 
-    #if HAS_EXTRA_ENDSTOPS || ENABLED(Z_STEPPER_AUTO_ALIGN)
+    #if EITHER(HAS_EXTRA_ENDSTOPS, Z_STEPPER_AUTO_ALIGN)
       static bool separate_multi_axis;
     #endif
 
@@ -332,6 +332,10 @@ class Stepper {
     #if ENABLED(INTEGRATED_BABYSTEPPING)
       static constexpr uint32_t BABYSTEP_NEVER = 0xFFFFFFFF;
       static uint32_t nextBabystepISR;
+    #endif
+
+    #if ENABLED(DIRECT_STEPPING)
+      static page_step_state_t page_step_state;
     #endif
 
     static int32_t ticks_nominal;
@@ -426,6 +430,17 @@ class Stepper {
     static void report_a_position(const xyz_long_t &pos);
     static void report_positions();
 
+    // Discard current block and free any resources
+    FORCE_INLINE static void discard_current_block() {
+      #if ENABLED(DIRECT_STEPPING)
+        if (IS_PAGE(current_block))
+          page_manager.free_page(current_block->page_idx);
+      #endif
+      current_block = nullptr;
+      axis_did_move = 0;
+      planner.release_current_block();
+    }
+
     // Quickly stop all steppers
     FORCE_INLINE static void quick_stop() { abort_current_block = true; }
 
@@ -461,7 +476,7 @@ class Stepper {
       static void microstep_readings();
     #endif
 
-    #if HAS_EXTRA_ENDSTOPS || ENABLED(Z_STEPPER_AUTO_ALIGN)
+    #if EITHER(HAS_EXTRA_ENDSTOPS, Z_STEPPER_AUTO_ALIGN)
       FORCE_INLINE static void set_separate_multi_axis(const bool state) { separate_multi_axis = state; }
     #endif
     #if ENABLED(X_DUAL_ENDSTOPS)

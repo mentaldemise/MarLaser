@@ -27,7 +27,7 @@
   #include "../libs/buzzer.h"
 #endif
 
-#if HAS_LCD_MENU || ENABLED(ULTIPANEL_FEEDMULTIPLY)
+#if EITHER(HAS_LCD_MENU, ULTIPANEL_FEEDMULTIPLY)
   #define HAS_ENCODER_ACTION 1
 #endif
 #if (!HAS_ADC_BUTTONS && ENABLED(NEWPANEL)) || BUTTONS_EXIST(EN1, EN2)
@@ -43,6 +43,10 @@
 // I2C buttons must be read in the main thread
 #if EITHER(LCD_I2C_VIKI, LCD_I2C_PANELOLU2)
   #define HAS_SLOW_BUTTONS 1
+#endif
+
+#if E_MANUAL > 1
+  #define MULTI_MANUAL 1
 #endif
 
 #if HAS_SPI_LCD
@@ -397,6 +401,8 @@ public:
       static void quick_feedback(const bool clear_buttons=true);
       #if HAS_BUZZER
         static void completion_feedback(const bool good=true);
+      #else
+        static inline void completion_feedback(const bool=true) {}
       #endif
 
       #if DISABLED(LIGHTWEIGHT_UI)
@@ -489,15 +495,9 @@ public:
     static void save_previous_screen();
 
     // goto_previous_screen and go_back may also be used as menu item callbacks
-    #if ENABLED(TURBO_BACK_MENU_ITEM)
-      static void _goto_previous_screen(const bool is_back);
-      static inline void goto_previous_screen() { _goto_previous_screen(false); }
-      static inline void go_back()              { _goto_previous_screen(true); }
-    #else
-      static void _goto_previous_screen();
-      FORCE_INLINE static void goto_previous_screen() { _goto_previous_screen(); }
-      FORCE_INLINE static void go_back()              { _goto_previous_screen(); }
-    #endif
+    static void _goto_previous_screen(TERN_(TURBO_BACK_MENU_ITEM, const bool is_back));
+    static inline void goto_previous_screen() { _goto_previous_screen(TERN_(TURBO_BACK_MENU_ITEM, false)); }
+    static inline void go_back()              { _goto_previous_screen(TERN_(TURBO_BACK_MENU_ITEM, true)); }
 
     static void return_to_status();
     static inline bool on_status_screen() { return currentScreen == status_screen; }
@@ -508,7 +508,7 @@ public:
     #endif
 
     FORCE_INLINE static void defer_status_screen(const bool defer=true) {
-      #if LCD_TIMEOUT_TO_STATUS
+      #if LCD_TIMEOUT_TO_STATUS > 0
         defer_return_to_status = defer;
       #else
         UNUSED(defer);
@@ -544,14 +544,40 @@ public:
 
   #endif
 
-  #define LCD_HAS_WAIT_FOR_MOVE EITHER(DELTA_CALIBRATION_MENU, DELTA_AUTO_CALIBRATION) || (ENABLED(LCD_BED_LEVELING) && EITHER(PROBE_MANUALLY, MESH_BED_LEVELING))
+  //
+  // EEPROM: Reset / Init / Load / Store
+  //
+  #if HAS_LCD_MENU
+    static void reset_settings();
+  #endif
 
-  #if LCD_HAS_WAIT_FOR_MOVE
+  #if ENABLED(EEPROM_SETTINGS)
+    #if HAS_LCD_MENU
+      static void init_eeprom();
+      static void load_settings();
+      static void store_settings();
+    #endif
+    #if DISABLED(EEPROM_AUTO_INIT)
+      static void eeprom_alert(const uint8_t msgid);
+      static inline void eeprom_alert_crc()     { eeprom_alert(0); }
+      static inline void eeprom_alert_index()   { eeprom_alert(1); }
+      static inline void eeprom_alert_version() { eeprom_alert(2); }
+    #endif
+  #endif
+
+  //
+  // Special handling if a move is underway
+  //
+  #if EITHER(DELTA_CALIBRATION_MENU, DELTA_AUTO_CALIBRATION) || (ENABLED(LCD_BED_LEVELING) && EITHER(PROBE_MANUALLY, MESH_BED_LEVELING))
+    #define LCD_HAS_WAIT_FOR_MOVE 1
     static bool wait_for_move;
   #else
     static constexpr bool wait_for_move = false;
   #endif
 
+  //
+  // Block interaction while under external control
+  //
   #if HAS_LCD_MENU && EITHER(AUTO_BED_LEVELING_UBL, G26_MESH_VALIDATION)
     static bool external_control;
     FORCE_INLINE static void capture() { external_control = true; }
@@ -580,11 +606,7 @@ public:
 
     static uint32_t encoderPosition;
 
-    #if ENABLED(REVERSE_ENCODER_DIRECTION)
-      #define ENCODERBASE -1
-    #else
-      #define ENCODERBASE +1
-    #endif
+    #define ENCODERBASE (TERN(REVERSE_ENCODER_DIRECTION, -1, +1))
 
     #if EITHER(REVERSE_MENU_DIRECTION, REVERSE_SELECT_DIRECTION)
       static int8_t encoderDirection;
@@ -619,12 +641,10 @@ private:
   #endif
 
   #if HAS_SPI_LCD
-    #if HAS_LCD_MENU
-      #if LCD_TIMEOUT_TO_STATUS
-        static bool defer_return_to_status;
-      #else
-        static constexpr bool defer_return_to_status = false;
-      #endif
+    #if HAS_LCD_MENU && LCD_TIMEOUT_TO_STATUS > 0
+      static bool defer_return_to_status;
+    #else
+      static constexpr bool defer_return_to_status = false;
     #endif
     static void draw_status_screen();
   #endif

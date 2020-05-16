@@ -266,6 +266,10 @@ namespace Language_en {
   PROGMEM Language_Str MSG_LCD_OFF                         = _UxGT("Off");
   PROGMEM Language_Str MSG_PID_AUTOTUNE                    = _UxGT("PID Autotune");
   PROGMEM Language_Str MSG_PID_AUTOTUNE_E                  = _UxGT("PID Autotune *");
+  PROGMEM Language_Str MSG_PID_AUTOTUNE_DONE               = _UxGT("PID tuning done");
+  PROGMEM Language_Str MSG_PID_BAD_EXTRUDER_NUM            = _UxGT("Autotune failed. Bad extruder.");
+  PROGMEM Language_Str MSG_PID_TEMP_TOO_HIGH               = _UxGT("Autotune failed. Temperature too high.");
+  PROGMEM Language_Str MSG_PID_TIMEOUT                     = _UxGT("Autotune failed! Timeout.");
   PROGMEM Language_Str MSG_PID_P                           = _UxGT("PID-P");
   PROGMEM Language_Str MSG_PID_P_E                         = _UxGT("PID-P *");
   PROGMEM Language_Str MSG_PID_I                           = _UxGT("PID-I");
@@ -301,6 +305,8 @@ namespace Language_en {
   PROGMEM Language_Str MSG_AMAX_EN                         = _UxGT("Amax *");
   PROGMEM Language_Str MSG_A_RETRACT                       = _UxGT("A-Retract");
   PROGMEM Language_Str MSG_A_TRAVEL                        = _UxGT("A-Travel");
+  PROGMEM Language_Str MSG_XY_FREQUENCY_LIMIT              = _UxGT("Frequency max");
+  PROGMEM Language_Str MSG_XY_FREQUENCY_FEEDRATE           = _UxGT("Feed min");
   PROGMEM Language_Str MSG_STEPS_PER_MM                    = _UxGT("Steps/mm");
   PROGMEM Language_Str MSG_A_STEPS                         = LCD_STR_A _UxGT("steps/mm");
   PROGMEM Language_Str MSG_B_STEPS                         = LCD_STR_B _UxGT("steps/mm");
@@ -322,9 +328,9 @@ namespace Language_en {
   PROGMEM Language_Str MSG_LOAD_EEPROM                     = _UxGT("Load Settings");
   PROGMEM Language_Str MSG_RESTORE_DEFAULTS                = _UxGT("Restore Defaults");
   PROGMEM Language_Str MSG_INIT_EEPROM                     = _UxGT("Initialize EEPROM");
-  PROGMEM Language_Str MSG_ERR_EEPROM_CRC                  = _UxGT("Err: EEPROM CRC");
-  PROGMEM Language_Str MSG_ERR_EEPROM_INDEX                = _UxGT("Err: EEPROM Index");
-  PROGMEM Language_Str MSG_ERR_EEPROM_VERSION              = _UxGT("Err: EEPROM Version");
+  PROGMEM Language_Str MSG_ERR_EEPROM_CRC                  = _UxGT("EEPROM CRC Error");
+  PROGMEM Language_Str MSG_ERR_EEPROM_INDEX                = _UxGT("EEPROM Index Error");
+  PROGMEM Language_Str MSG_ERR_EEPROM_VERSION              = _UxGT("EEPROM Version Error");
   PROGMEM Language_Str MSG_SETTINGS_STORED                 = _UxGT("Settings Stored");
   PROGMEM Language_Str MSG_MEDIA_UPDATE                    = _UxGT("Media Update");
   PROGMEM Language_Str MSG_RESET_PRINTER                   = _UxGT("Reset Printer");
@@ -338,6 +344,7 @@ namespace Language_en {
   PROGMEM Language_Str MSG_BUTTON_STOP                     = _UxGT("Stop");
   PROGMEM Language_Str MSG_BUTTON_PRINT                    = _UxGT("Print");
   PROGMEM Language_Str MSG_BUTTON_RESET                    = _UxGT("Reset");
+  PROGMEM Language_Str MSG_BUTTON_IGNORE                   = _UxGT("Ignore");
   PROGMEM Language_Str MSG_BUTTON_CANCEL                   = _UxGT("Cancel");
   PROGMEM Language_Str MSG_BUTTON_DONE                     = _UxGT("Done");
   PROGMEM Language_Str MSG_BUTTON_BACK                     = _UxGT("Back");
@@ -371,11 +378,22 @@ namespace Language_en {
   PROGMEM Language_Str MSG_CONTROL_RETRACT_RECOVER_SWAPF   = _UxGT("S UnRet V");
   PROGMEM Language_Str MSG_AUTORETRACT                     = _UxGT("AutoRetr.");
   PROGMEM Language_Str MSG_FILAMENT_SWAP_LENGTH            = _UxGT("Swap Length");
+  PROGMEM Language_Str MSG_FILAMENT_SWAP_EXTRA             = _UxGT("Swap Extra");
   PROGMEM Language_Str MSG_FILAMENT_PURGE_LENGTH           = _UxGT("Purge Length");
   PROGMEM Language_Str MSG_TOOL_CHANGE                     = _UxGT("Tool Change");
   PROGMEM Language_Str MSG_TOOL_CHANGE_ZLIFT               = _UxGT("Z Raise");
-  PROGMEM Language_Str MSG_SINGLENOZZLE_PRIME_SPD          = _UxGT("Prime Speed");
-  PROGMEM Language_Str MSG_SINGLENOZZLE_RETRACT_SPD        = _UxGT("Retract Speed");
+  PROGMEM Language_Str MSG_SINGLENOZZLE_PRIME_SPEED        = _UxGT("Prime Speed");
+  PROGMEM Language_Str MSG_SINGLENOZZLE_RETRACT_SPEED      = _UxGT("Retract Speed");
+  PROGMEM Language_Str MSG_FILAMENT_PARK_ENABLED           = _UxGT("Park Head");
+  PROGMEM Language_Str MSG_SINGLENOZZLE_UNRETRACT_SPEED    = _UxGT("Recover Speed");
+  PROGMEM Language_Str MSG_SINGLENOZZLE_FAN_SPEED          = _UxGT("Fan Speed");
+  PROGMEM Language_Str MSG_SINGLENOZZLE_FAN_TIME           = _UxGT("Fan Time");
+  PROGMEM Language_Str MSG_TOOL_MIGRATION_ON               = _UxGT("Auto ON");
+  PROGMEM Language_Str MSG_TOOL_MIGRATION_OFF              = _UxGT("Auto OFF");
+  PROGMEM Language_Str MSG_TOOL_MIGRATION                  = _UxGT("Tool Migration");
+  PROGMEM Language_Str MSG_TOOL_MIGRATION_AUTO             = _UxGT("Auto-migration");
+  PROGMEM Language_Str MSG_TOOL_MIGRATION_END              = _UxGT("Last Extruder");
+  PROGMEM Language_Str MSG_TOOL_MIGRATION_SWAP             = _UxGT("Migrate to *");
   PROGMEM Language_Str MSG_FILAMENTCHANGE                  = _UxGT("Change Filament");
   PROGMEM Language_Str MSG_FILAMENTCHANGE_E                = _UxGT("Change Filament *");
   PROGMEM Language_Str MSG_FILAMENTLOAD                    = _UxGT("Load Filament");
@@ -517,21 +535,21 @@ namespace Language_en {
   PROGMEM Language_Str MSG_MMU2_MENU                       = _UxGT("MMU");
   PROGMEM Language_Str MSG_KILL_MMU2_FIRMWARE              = _UxGT("Update MMU Firmware!");
   PROGMEM Language_Str MSG_MMU2_NOT_RESPONDING             = _UxGT("MMU Needs Attention.");
-  PROGMEM Language_Str MSG_MMU2_RESUME                     = _UxGT("Resume Print");
-  PROGMEM Language_Str MSG_MMU2_RESUMING                   = _UxGT("Resuming...");
-  PROGMEM Language_Str MSG_MMU2_LOAD_FILAMENT              = _UxGT("Load Filament");
-  PROGMEM Language_Str MSG_MMU2_LOAD_ALL                   = _UxGT("Load All");
-  PROGMEM Language_Str MSG_MMU2_LOAD_TO_NOZZLE             = _UxGT("Load to Nozzle");
-  PROGMEM Language_Str MSG_MMU2_EJECT_FILAMENT             = _UxGT("Eject Filament");
-  PROGMEM Language_Str MSG_MMU2_EJECT_FILAMENT_N           = _UxGT("Eject Filament ~");
-  PROGMEM Language_Str MSG_MMU2_UNLOAD_FILAMENT            = _UxGT("Unload Filament");
+  PROGMEM Language_Str MSG_MMU2_RESUME                     = _UxGT("MMU Resume");
+  PROGMEM Language_Str MSG_MMU2_RESUMING                   = _UxGT("MMU Resuming...");
+  PROGMEM Language_Str MSG_MMU2_LOAD_FILAMENT              = _UxGT("MMU Load");
+  PROGMEM Language_Str MSG_MMU2_LOAD_ALL                   = _UxGT("MMU Load All");
+  PROGMEM Language_Str MSG_MMU2_LOAD_TO_NOZZLE             = _UxGT("MMU Load to Nozzle");
+  PROGMEM Language_Str MSG_MMU2_EJECT_FILAMENT             = _UxGT("MMU Eject");
+  PROGMEM Language_Str MSG_MMU2_EJECT_FILAMENT_N           = _UxGT("MMU Eject ~");
+  PROGMEM Language_Str MSG_MMU2_UNLOAD_FILAMENT            = _UxGT("MMU Unload");
   PROGMEM Language_Str MSG_MMU2_LOADING_FILAMENT           = _UxGT("Loading Fil. %i...");
   PROGMEM Language_Str MSG_MMU2_EJECTING_FILAMENT          = _UxGT("Ejecting Fil. ...");
   PROGMEM Language_Str MSG_MMU2_UNLOADING_FILAMENT         = _UxGT("Unloading Fil....");
   PROGMEM Language_Str MSG_MMU2_ALL                        = _UxGT("All");
   PROGMEM Language_Str MSG_MMU2_FILAMENT_N                 = _UxGT("Filament ~");
   PROGMEM Language_Str MSG_MMU2_RESET                      = _UxGT("Reset MMU");
-  PROGMEM Language_Str MSG_MMU2_RESETTING                  = _UxGT("Resetting MMU...");
+  PROGMEM Language_Str MSG_MMU2_RESETTING                  = _UxGT("MMU Resetting...");
   PROGMEM Language_Str MSG_MMU2_EJECT_RECOVER              = _UxGT("Remove, click");
 
   PROGMEM Language_Str MSG_MIX                             = _UxGT("Mix");
@@ -558,6 +576,9 @@ namespace Language_en {
   PROGMEM Language_Str MSG_INVADERS                        = _UxGT("Invaders");
   PROGMEM Language_Str MSG_SNAKE                           = _UxGT("Sn4k3");
   PROGMEM Language_Str MSG_MAZE                            = _UxGT("Maze");
+
+  PROGMEM Language_Str MSG_BAD_PAGE                        = _UxGT("Bad page index");
+  PROGMEM Language_Str MSG_BAD_PAGE_SPEED                  = _UxGT("Bad page speed");
 
   //
   // Filament Change screens show up to 3 lines on a 4-line display

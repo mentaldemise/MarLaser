@@ -34,16 +34,20 @@
 
   void menu_spindle_laser() {
 
+    const bool is_enabled = cutter.enabled() && cutter.isOn;
+
     START_MENU();
     BACK_ITEM(MSG_MAIN);
+
     #if ENABLED(SPINDLE_LASER_PWM)
-      EDIT_ITEM_FAST(CUTTER_MENU_POWER_TYPE, MSG_CUTTER(POWER), &cutter.setPower,
-        cutter.interpret_power(SPEED_POWER_MIN), cutter.interpret_power(SPEED_POWER_MAX),
-        []{ if (cutter.isOn) cutter.power = cutter.setPower; }
+      // Change the cutter's "current power" value without turning the cutter on or off
+      // Power is displayed in units and range according to config
+      EDIT_ITEM_FAST(CUTTER_MENU_POWER_TYPE, MSG_CUTTER(POWER), &cutter.displayPower,
+        cutter.dpower_min(), cutter.dpower_max(), cutter.update_from_dpower
       );
     #endif
 
-    if (cutter.enabled() && cutter.isOn)
+    if (is_enabled)
       ACTION_ITEM(MSG_CUTTER(OFF), cutter.disable);
     else {
       ACTION_ITEM(MSG_CUTTER(ON), cutter.enable_forward);
@@ -54,7 +58,7 @@
 
     #if ENABLED(MARLIN_DEV_MODE)
       #if ENABLED(HAL_CAN_SET_PWM_FREQ) && defined(SPINDLE_LASER_FREQUENCY)
-        EDIT_ITEM_FAST(CUTTER_MENU_FREQUENCY_TYPE, MSG_CUTTER_FREQUENCY, &cutter.frequency, 2000, 50000,[]{ cutter.refresh_frequency();});
+        EDIT_ITEM_FAST(CUTTER_MENU_FREQUENCY_TYPE, MSG_CUTTER_FREQUENCY, &cutter.frequency, 2000, 50000, cutter.refresh_frequency);
       #endif
     #endif
     END_MENU();

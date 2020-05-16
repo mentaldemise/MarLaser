@@ -33,9 +33,9 @@
 SpindleLaser cutter;
 
 cutter_power_t SpindleLaser::power;
-bool SpindleLaser::isOn;                                                       // state to determine when to apply setPower to power
-cutter_setPower_t SpindleLaser::setPower =
-  cutter.interpret_power(TERN(SPINDLE_LASER_PWM, SPEED_POWER_MIN, SPEED_POWER_STARTUP)); // spindle/laser speed/power control in PWM, Percentage or RPM
+bool SpindleLaser::isOn;                                                       // state to determine when to apply displayPower to power
+cutter_displayPower_t SpindleLaser::displayPower =
+  cutter.upower_to_dpower(TERN(SPINDLE_LASER_PWM, SPEED_POWER_MIN, SPEED_POWER_STARTUP)); // spindle/laser speed/power control in PWM, Percentage or RPM
 
 #if ENABLED(MARLIN_DEV_MODE)
   cutter_frequency_t SpindleLaser::frequency;                                  // setting PWM frequency; range: 2K - 50K
@@ -75,19 +75,20 @@ void SpindleLaser::init() {
 //
 // Set cutter ON state (and PWM) to the given cutter power value
 //
-void SpindleLaser::apply_power(const cutter_power_t inpow) {
+void SpindleLaser::apply_power(const cutter_power_t upwr) {
   static cutter_power_t last_power_applied = 0;
-  if (inpow == last_power_applied) return;
-  last_power_applied = inpow;
+  if (upwr == last_power_applied) return;
+  last_power_applied = upwr;
+  power = upwr;
   #if ENABLED(SPINDLE_LASER_PWM)
     if (enabled())
-      set_ocr(translate_power(inpow));
+      set_ocr(upower_to_ocr(upwr));
     else {
       WRITE(SPINDLE_LASER_ENA_PIN, !SPINDLE_LASER_ACTIVE_HIGH);         // Turn spindle off
       analogWrite(pin_t(SPINDLE_LASER_PWM_PIN), SPINDLE_LASER_PWM_OFF); // Only write low byte
     }
   #else
-    WRITE(SPINDLE_LASER_ENA_PIN, (SPINDLE_LASER_ACTIVE_HIGH) ? enabled() : !enabled());
+    WRITE(SPINDLE_LASER_ENA_PIN, enabled() == SPINDLE_LASER_ACTIVE_HIGH);
   #endif
 }
 
