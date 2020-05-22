@@ -102,22 +102,22 @@ This LightBurn file can be used to calibrate steps. There's a 20mmX20mm square w
 Use this link to download the Calibration file [Calibration File](media/calibration/20mmSquareStepCal.lbrn)  
 
 
-### 12V buck for Relays
-Stepping 24V down to 5V to run switches and the relay coils
-
-![img](media/img/20200512_224132.jpg)
+~~### 12V buck for Relays
+Stepping 24V down to 5V to run switches and the relay coils~~
 
 ### Relay board
-
 Runs: Cooling(water pump), Exhaust, and Air Assist via panel buttons
 
 ![](media/img/20200507_130845.jpg)
 
 ### Panel
 
-Pretty basic in the grand scheme
+Here's the new panel I have hooked up. The relay board will better explain, but the push buttons are feeding power to a relay in all cases but the aiming diode.
 
-![](media/img/20200507_130815.jpg)
+![](media/img/newpanel.jpg)
+
+Here is the [DXF File](media/panel_files/NewPanel.dxf)
+Here is the [LBRN File](media/panel_files/LaserPanel.lbrn)
 
 ## Water pump/flow indicator?
 
